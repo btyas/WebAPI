@@ -29,14 +29,40 @@ namespace WebAPI.Controllers
             return Ok(cities);
         }
         // Post api/city/add?citynaame
+       
+        [HttpPost("post")]
+        
+       //
+         public async Task<IActionResult> AddCity(City city)
+        {
+           // City city = new City();
+           // city.Name = cityName;
+            await dc.Cities.AddAsync(city);
+            await dc.SaveChangesAsync();
+            return Ok(city);
+        }
         [HttpPost("add")]
-        public async Task<ActionResult> AddCity( string cityName)
+        [HttpPost("add/{cityName}")]
+        
+        public async Task<IActionResult> AddCity(string cityName)
         {
             City city = new City();
             city.Name = cityName;
             await dc.Cities.AddAsync(city);
             await dc.SaveChangesAsync();
             return Ok(city);
+        }
+
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteCity(int id)
+        {
+            var city = await dc.Cities.FindAsync(id);
+
+            dc.Cities.Remove(city);
+
+            await dc.SaveChangesAsync();
+
+            return Ok(id);
         }
     }
 }
