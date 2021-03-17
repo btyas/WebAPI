@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebAPI.Data;
+using WebAPI.Data.Repo;
+using WebAPI.Interfaces;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
@@ -14,55 +16,58 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CityController : ControllerBase
     {
-        private readonly DataContext dc;
 
-        public CityController(DataContext dc)
+        private readonly IUnitofwork uow;
+
+
+        public CityController(IUnitofwork uow)
         {
-            this.dc = dc;
+
+            this.uow = uow;
         }
 
-
+        // Get api/City
         [HttpGet]
-       public async Task<IActionResult> GetCities()
+        public async Task<IActionResult> GetCities()
         {
-            var cities = await dc.Cities.ToListAsync();
+            var cities = await uow.CityRepository.GetCitiesAsync();
             return Ok(cities);
         }
         // Post api/city/add?citynaame
-       
-        [HttpPost("post")]
-        
-       //
-         public async Task<IActionResult> AddCity(City city)
+
+
+
+        [HttpPost("post")] 
+        public async Task<IActionResult> AddCity(City city)
         {
-           // City city = new City();
-           // city.Name = cityName;
-            await dc.Cities.AddAsync(city);
-            await dc.SaveChangesAsync();
-            return Ok(city);
+            uow.CityRepository.AddCity(city);
+            await uow.SaveAsync();
+            return StatusCode(201);
+
         }
-        [HttpPost("add")]
-        [HttpPost("add/{cityName}")]
-        
-        public async Task<IActionResult> AddCity(string cityName)
-        {
-            City city = new City();
-            city.Name = cityName;
-            await dc.Cities.AddAsync(city);
-            await dc.SaveChangesAsync();
-            return Ok(city);
-        }
+
+        // Post api/city/add?cityname=Miami
+        // Post api/city/add/Los Angeles
+        //[HttpPost("add")]
+        //[HttpPost("add/{cityName}")]
+
+        //public async Task<IActionResult> AddCity(string cityName)
+        //{
+        //    City city = new City();
+        //    city.Name = cityName;
+        //    await uow.CityRepository.AddCity(city);
+        //    return Ok(city);
+        //}
 
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteCity(int id)
         {
-            var city = await dc.Cities.FindAsync(id);
+            uow.CityRepository.DeleteCity(id);
 
-            dc.Cities.Remove(city);
-
-            await dc.SaveChangesAsync();
+            await uow.SaveAsync();
 
             return Ok(id);
+            
         }
     }
 }
