@@ -5,10 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using AutoMapper;
 using WebAPI.Data;
 using WebAPI.Data.Repo;
 using WebAPI.Interfaces;
+using WebAPI.Helpers;
 
 namespace WebAPI
 {
@@ -27,6 +28,7 @@ namespace WebAPI
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default"))); 
             services.AddControllers();
             services.AddCors();
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddScoped<IUnitofwork, UnitOfWork>();
         }
 

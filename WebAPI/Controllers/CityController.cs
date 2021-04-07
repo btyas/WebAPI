@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -19,12 +20,13 @@ namespace WebAPI.Controllers
     {
 
         private readonly IUnitofwork uow;
+        private readonly IMapper mapper;
 
-
-        public CityController(IUnitofwork uow)
+        public CityController(IUnitofwork uow, IMapper mapper)
         {
 
             this.uow = uow;
+            this.mapper = mapper;
         }
 
         // Get api/City
@@ -32,17 +34,25 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> GetCities()
         {
             var cities = await uow.CityRepository.GetCitiesAsync();
-            var citiesDto = from c in cities
-                            select new CityDto()
-                            {
-                                Id = c.Id,
-                                Name = c.Name
-                            };
+            var citiesDto = mapper.Map<IEnumerable<CityDto>>(cities);
             
             return Ok(citiesDto);
         }
         // Post api/city/add?citynaame
 
+        [HttpPut("update/{id}")]
+
+        public async Task<IActionResult> UpdateCity(int id, CityDto cityDto)
+        {
+
+            var cityFromDb = await uow.CityRepository.FindCity(id);
+            cityFromDb.LastUpdatedBy = 1;
+            cityFromDb.LastUpdatedOn = DateTime.Now;
+
+            mapper.Map(cityDto, cityFromDb);
+            await uow.SaveAsync();
+            return StatusCode(200);
+        }
 
 
         [HttpPost("post")] 
