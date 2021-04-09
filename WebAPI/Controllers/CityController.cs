@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -39,6 +40,25 @@ namespace WebAPI.Controllers
             return Ok(citiesDto);
         }
         // Post api/city/add?citynaame
+
+        [HttpPatch("update/{id}")]
+
+        public async Task<IActionResult> UpdateCity(int id, JsonPatchDocument<City> cityToPat)
+        {
+
+            var cityFromDb = await uow.CityRepository.FindCity(id);
+            cityFromDb.LastUpdatedBy = 1;
+            cityFromDb.LastUpdatedOn = DateTime.Now;
+
+            cityToPat.ApplyTo(cityFromDb, ModelState);
+            await uow.SaveAsync();
+            return StatusCode(200);
+        }
+
+
+
+
+
 
         [HttpPut("update/{id}")]
 
