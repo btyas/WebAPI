@@ -18,9 +18,14 @@ namespace WebAPI.Data.Repo
         public ICityRepository CityRepository => 
             new CityRepository(dc);
 
+        public ICuisinerRepository CuisinierRepository => 
+             new CuisinierRepository(dc);
+
         public async Task<bool> SaveAsync()
         {
             return await dc.SaveChangesAsync() > 0;
         }
+
+       
     }
 }

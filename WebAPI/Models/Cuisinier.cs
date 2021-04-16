@@ -6,13 +6,18 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Models
 {
-    public class ImageUrl
+    public class Cuisinier
     {
         public int Id { get; set; }
+        [MaxLength(150)]
+        public string ImageCuisinierUrl { get; set; }
 
+        public List<ImageUrl> ImageUrlId { get; set;  }
+          
+        [Required]
         [MaxLength(50)]
-        public string ImagePaths { get; set; }
-
-        
+        public string Name { get;  set; }
     }
+
+   
 }

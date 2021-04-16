@@ -15,7 +15,7 @@ namespace WebAPI.Models
 
         public int LastUpdatedBy { get; set; }
 
-        public List<Cuisiniers> ListofCuisiniers { get; set; }
+        public List<Cuisinier> ListofCuisiniers { get; set; }
 
     }
 }

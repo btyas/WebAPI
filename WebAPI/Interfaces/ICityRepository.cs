@@ -16,5 +16,6 @@ namespace WebAPI.Data.Repo
         void DeleteCity(int cityId);
 
         Task<City> FindCity(int id);
+      
     }
 }
