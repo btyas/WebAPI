@@ -7,12 +7,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebAPI.Data;
+using WebAPI.Dtos;
 using WebAPI.Interfaces;
 using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class CuisinierController : ControllerBase
     {
@@ -32,16 +33,19 @@ namespace WebAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCuisinier()
         {
+
+
             var list_cuisinier = await (from cuisinier in _db.Cuisiniers
                                         join citie in _db.Cities
                                         on cuisinier.Id equals citie.Id
-                                        select new Cuisinier
+                                        select new CuisinierInfo
                                         {
-                                            Id = citie.Id,
-                                            Name = cuisinier.Name
-                                            
-                                       
-                                           
+                                            CuisinierName = cuisinier.Name,
+                                            CityCuisinier =citie.Name,
+                                            CuisinierId = cuisinier.Id
+
+
+
 
                                         }).ToListAsync();
                                                
