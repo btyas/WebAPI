@@ -13,5 +13,7 @@ namespace WebAPI.Dtos
         public int CuisinierId { get; set; }
 
         public string  CityCuisinier { get; set; }
+
+        public string  CodePostaleCuisinier { get; set; }
     }
 }

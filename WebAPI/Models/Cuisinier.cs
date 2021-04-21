@@ -17,6 +17,25 @@ namespace WebAPI.Models
         [Required]
         [MaxLength(50)]
         public string Name { get;  set; }
+
+        [Required]
+        [MaxLength(50)]
+        public string LastName { get; set; }
+
+        public string email { get; set; }
+
+        public string Adresse { get; set; }
+
+        [Required]
+        [MaxLength(20)]
+        public string Phone { get; set; }
+
+        [Required]
+        public int ZIPCode { get; set; }
+
+        public int Gender { get; set; }  // 0 Male, 1 : Female
+
+
     }
 
    

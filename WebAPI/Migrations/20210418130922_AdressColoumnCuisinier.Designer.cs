@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAPI.Data;
 
 namespace WebAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210418130922_AdressColoumnCuisinier")]
+    partial class AdressColoumnCuisinier
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,33 +58,14 @@ namespace WebAPI.Migrations
                     b.Property<int?>("CityId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Gender")
-                        .HasColumnType("int");
-
                     b.Property<string>("ImageCuisinierUrl")
                         .HasColumnType("nvarchar(150)")
                         .HasMaxLength(150);
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<int>("ZIPCode")
-                        .HasColumnType("int");
-
-                    b.Property<string>("email")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

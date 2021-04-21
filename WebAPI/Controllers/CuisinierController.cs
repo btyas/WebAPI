@@ -31,23 +31,25 @@ namespace WebAPI.Controllers
 
         // Get api/City
         [HttpGet]
-        public async Task<IActionResult> GetCuisinier()
+        public async Task<IActionResult> ListCuisiniers()
         {
 
+            var list_cuisinier =  await (from cuisinier in _db.Cuisiniers
+                                 select cuisinier).ToListAsync();
 
-            var list_cuisinier = await (from cuisinier in _db.Cuisiniers
-                                        join citie in _db.Cities
-                                        on cuisinier.Id equals citie.Id
-                                        select new CuisinierInfo
-                                        {
-                                            CuisinierName = cuisinier.Name,
-                                            CityCuisinier =citie.Name,
-                                            CuisinierId = cuisinier.Id
+            //var list_cuisinier = await (from cuisinier in _db.Cuisiniers
+            //                            join citie in _db.Cities
+            //                            on cuisinier.Id equals citie.Id
+            //                            select new CuisinierInfo
+            //                            {
+            //                                CuisinierName = cuisinier.Name,
+            //                                CityCuisinier =citie.Name,
+            //                                CuisinierId = cuisinier.Id
 
 
 
 
-                                        }).ToListAsync();
+            //                            }).ToListAsync();
                                                
             
          //   var cuisinier = await uow.CuisinierRepository.GetCuisiniersAsync();
@@ -79,10 +81,10 @@ namespace WebAPI.Controllers
 
         [HttpPut("update/{id}")]
 
-        public async Task<IActionResult> UpdateCity(int id)
+        public async Task<IActionResult> UpdateCuisinier(int id, Cuisinier _cuisinierUpdate)
         {
 
-            var cityFromDb = await uow.CityRepository.FindCity(id);
+            var CuisinierFromDb = await uow.CityRepository.FindCity(id);
             
 
           
@@ -91,15 +93,13 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpPost("post")]
+        [HttpPost("addNewUser")]   //api/Cuisinier/addNewUser
         public async  Task<IActionResult>  AddCuisinier (Cuisinier _cuisinier)
         {
-            var cuisinier = new Cuisinier
-            {
-                Name = _cuisinier.Name,
-                
+            var cuisinier = _cuisinier;
+               
 
-            };
+            
             uow.CuisinierRepository.AddCuisinier(cuisinier);
             await uow.SaveAsync();
             return StatusCode(201);
