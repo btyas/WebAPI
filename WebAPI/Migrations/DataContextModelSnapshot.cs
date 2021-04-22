@@ -74,7 +74,6 @@ namespace WebAPI.Migrations
                         .HasMaxLength(50);
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 

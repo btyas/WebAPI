@@ -26,11 +26,10 @@ namespace WebAPI.Models
 
         public string Adresse { get; set; }
 
-        [Required]
         [MaxLength(20)]
         public string Phone { get; set; }
 
-        [Required]
+        
         public int ZIPCode { get; set; }
 
         public int Gender { get; set; }  // 0 Male, 1 : Female

@@ -29,7 +29,7 @@ namespace WebAPI.Controllers
              
         }
 
-        // Get api/City
+        // Get api/Cuisinier
         [HttpGet]
         public async Task<IActionResult> ListCuisiniers()
         {
@@ -93,12 +93,19 @@ namespace WebAPI.Controllers
         }
 
 
-        [HttpPost("addNewUser")]   //api/Cuisinier/addNewUser
-        public async  Task<IActionResult>  AddCuisinier (Cuisinier _cuisinier)
+        [HttpPost]   //api/Cuisinier/AddCuisinier
+        public async  Task<IActionResult>  AddCuisinier (Cuisinier  CuisinierName)
         {
-            var cuisinier = _cuisinier;
-               
+            var cuisinier = new Cuisinier
+            {
+                Name = CuisinierName.Name,
+                Adresse = CuisinierName.Adresse,
+                LastName = CuisinierName.LastName
 
+
+
+
+            };
             
             uow.CuisinierRepository.AddCuisinier(cuisinier);
             await uow.SaveAsync();

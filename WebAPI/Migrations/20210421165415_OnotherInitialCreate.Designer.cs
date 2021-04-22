@@ -10,8 +10,8 @@ using WebAPI.Data;
 namespace WebAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210421123919_addColumnsModel")]
-    partial class addColumnsModel
+    [Migration("20210421165415_OnotherInitialCreate")]
+    partial class OnotherInitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,7 +76,6 @@ namespace WebAPI.Migrations
                         .HasMaxLength(50);
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 

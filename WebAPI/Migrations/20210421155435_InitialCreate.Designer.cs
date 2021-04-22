@@ -10,8 +10,8 @@ using WebAPI.Data;
 namespace WebAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210418130922_AdressColoumnCuisinier")]
-    partial class AdressColoumnCuisinier
+    [Migration("20210421155435_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,14 +58,33 @@ namespace WebAPI.Migrations
                     b.Property<int?>("CityId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
+
                     b.Property<string>("ImageCuisinierUrl")
                         .HasColumnType("nvarchar(150)")
                         .HasMaxLength(150);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<int>("ZIPCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("email")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
