@@ -100,7 +100,12 @@ namespace WebAPI.Controllers
             {
                 Name = CuisinierName.Name,
                 Adresse = CuisinierName.Adresse,
-                LastName = CuisinierName.LastName
+                LastName = CuisinierName.LastName,
+                Phone = CuisinierName.Phone,
+                email = CuisinierName.email,
+                ZIPCode = CuisinierName.ZIPCode,
+                Gender = CuisinierName.Gender,
+              
 
 
 

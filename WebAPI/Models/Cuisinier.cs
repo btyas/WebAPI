@@ -12,7 +12,7 @@ namespace WebAPI.Models
         [MaxLength(150)]
         public string ImageCuisinierUrl { get; set; }
 
-        public List<ImageUrl> ImageUrlId { get; set;  }
+        
           
         [Required]
         [MaxLength(50)]
