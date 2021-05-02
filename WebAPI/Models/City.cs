@@ -11,9 +11,7 @@ namespace WebAPI.Models
         public string Name { get; set; }
 
         public string Country { get; set; }
-        public DateTime LastUpdatedOn  { get; set; }
-
-        public int LastUpdatedBy { get; set; }
+        
 
         public List<Cuisinier> ListofCuisiniers { get; set; }
 

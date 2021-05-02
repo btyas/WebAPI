@@ -47,8 +47,7 @@ namespace WebAPI.Controllers
         {
 
             var cityFromDb = await uow.CityRepository.FindCity(id);
-            cityFromDb.LastUpdatedBy = 1;
-            cityFromDb.LastUpdatedOn = DateTime.Now;
+            
 
             cityToPat.ApplyTo(cityFromDb, ModelState);
             await uow.SaveAsync();
@@ -66,8 +65,7 @@ namespace WebAPI.Controllers
         {
 
             var cityFromDb = await uow.CityRepository.FindCity(id);
-            cityFromDb.LastUpdatedBy = 1;
-            cityFromDb.LastUpdatedOn = DateTime.Now;
+           
 
             mapper.Map(cityDto, cityFromDb);
             await uow.SaveAsync();
@@ -81,8 +79,7 @@ namespace WebAPI.Controllers
             var city = new City
             {
                 Name = cityDto.Name,
-                LastUpdatedBy = 1,
-                LastUpdatedOn = DateTime.Now
+                
 
             };
             uow.CityRepository.AddCity(city);
