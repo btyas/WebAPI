@@ -105,6 +105,7 @@ namespace WebAPI.Controllers
                 email = CuisinierName.email,
                 ZIPCode = CuisinierName.ZIPCode,
                 Gender = CuisinierName.Gender,
+                
                  
                    
 

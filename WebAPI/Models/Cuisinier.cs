@@ -35,8 +35,8 @@ namespace WebAPI.Models
 
         public int Gender { get; set; }  // 0 Male, 1 : Female
 
-        [ForeignKey("CityFKId")]
-        public int CityId { get; set; }
+        public int CityId{ get; set; }
+
     }
 
    
