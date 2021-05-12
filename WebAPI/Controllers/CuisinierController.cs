@@ -67,16 +67,9 @@ namespace WebAPI.Controllers
             var CuisinierFromDb = await uow.CuisinierRepository.FindCuisinier(id);
 
              
-           
-
-           
             await uow.SaveAsync();
             return StatusCode(200);
         }
-
-
-
-
 
 
         [HttpPut("update/{id}")]
@@ -105,7 +98,7 @@ namespace WebAPI.Controllers
                 email = CuisinierName.email,
                 ZIPCode = CuisinierName.ZIPCode,
                 Gender = CuisinierName.Gender,
-                
+                CityId = 1
                  
                    
 

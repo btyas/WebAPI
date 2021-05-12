@@ -15,5 +15,7 @@ namespace WebAPI.Models
 
         public List<Cuisinier> ListofCuisiniers { get; set; }
 
+        public int CityId { get; set; }
+
     }
 }
