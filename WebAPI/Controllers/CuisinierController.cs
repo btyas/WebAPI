@@ -98,14 +98,17 @@ namespace WebAPI.Controllers
                 email = CuisinierName.email,
                 ZIPCode = CuisinierName.ZIPCode,
                 Gender = CuisinierName.Gender,
-                CityId = 1
-                 
-                   
+                CityId = CuisinierName.ZIPCode
+
 
 
 
             };
-            
+
+              if (cuisinier.CityId == 92220)
+            {
+                cuisinier.CityId = 1;
+            }
             uow.CuisinierRepository.AddCuisinier(cuisinier);
             await uow.SaveAsync();
             return StatusCode(201);

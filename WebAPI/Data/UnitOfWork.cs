@@ -21,6 +21,10 @@ namespace WebAPI.Data.Repo
         public ICuisinerRepository CuisinierRepository => 
              new CuisinierRepository(dc);
 
+
+        public IVilleRepository villeRepository =>
+            new VilleRepository(dc);
+
         public async Task<bool> SaveAsync()
         {
             return await dc.SaveChangesAsync() > 0;
