@@ -11,6 +11,10 @@ namespace WebAPI.Interfaces
         ICityRepository CityRepository { get; }
 
         ICuisinerRepository CuisinierRepository { get; }
+
+        IUserRepository UserRepository { get; }
+
+        IVilleRepository VilleRepository { get; }
         Task<bool> SaveAsync();
         
     }

@@ -29,7 +29,7 @@ namespace WebAPI.Controllers
              
         }
 
-        // Get api/Cuisinier
+        // Get api/Cuisinier/ListCuisiniers
         [HttpGet]
         public async Task<IActionResult> ListCuisiniers()
         {

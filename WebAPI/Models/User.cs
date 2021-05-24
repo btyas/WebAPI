@@ -29,6 +29,6 @@ namespace WebAPI.Models
 
         [ForeignKey("User")]
         public int CodePostalUser { get; set; }
-        public Ville  Ville { get; set; }
+        
     }
 }

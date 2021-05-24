@@ -6,12 +6,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebAPI.Data;
 using WebAPI.Interfaces;
+using WebAPI.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -24,35 +25,58 @@ namespace WebAPI.Controllers
             this.uow = uow;
             this._db = _db;
         }
-        // GET: api/<UserController>
+        // GET: api/User/ListUsers
         [HttpGet]
-        public  async Task<IActionResult> ListUsers() 
+        public async  Task<IActionResult> ListUsers()
         {
-            var list_user = await (from user in _db.Users
-                                        select user).ToListAsync();
-            return Ok(list_user);
+            var list_users= await(from user in _db.Users
+
+                                       select user).ToListAsync();
+
+            return Ok(list_users);
+
+
         }
 
-        // GET api/<UserController>/5
+        // GET api/<VilleController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/<UserController>
+        // POST api/User/AddUser
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> AddUser(User _user)
         {
+            var user = new User
+            {
+              Name = _user.Name,
+              LastName = _user.LastName,
+              email = _user.email,
+              Phone = _user.Phone,
+              Adresse = _user.Adresse,
+              Gender = _user.Gender,
+              CodePostalUser = _user.CodePostalUser
+             
+
+             
+
+            };
+            uow.UserRepository.AddUser(user);
+            await uow.SaveAsync();
+           
+            return StatusCode(201);
         }
 
-        // PUT api/<UserController>/5
+
+        // PUT api/<VilleController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<UserController>/5
+        // DELETE api/<VilleController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
