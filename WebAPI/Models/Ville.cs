@@ -9,15 +9,15 @@ namespace WebAPI.Models
 {
     public class Ville
     {
+
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [StringLength(5)]
         
-        public string IdVille { get; set; }
-
-
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [StringLength(5)]
         [Key]
+
+        public int VilleId { get; set; }
+
+
+        
         public int CodePostal { get; set; }
         
         [StringLength(50)]

@@ -43,11 +43,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> AddVille (Ville _ville)
         {
-            var ville = new Ville
-            {
-                NomVille = _ville.NomVille,
-              
-            };
+           
             
             await uow.SaveAsync();
             return StatusCode(201);

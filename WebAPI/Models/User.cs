@@ -23,7 +23,7 @@ namespace WebAPI.Models
         public string Phone { get; set; }
 
 
-      
+        public string Password { get; set; }
 
         public int Gender { get; set; }  // 0 Male, 1 : Female
 

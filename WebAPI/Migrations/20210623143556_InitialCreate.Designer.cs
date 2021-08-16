@@ -10,8 +10,8 @@ using WebAPI.Data;
 namespace WebAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210518162706_UserTable")]
-    partial class UserTable
+    [Migration("20210623143556_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -111,11 +111,14 @@ namespace WebAPI.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 
-                    b.Property<int?>("VilleCodePostal")
+                    b.Property<int?>("VilleId")
                         .HasColumnType("int");
 
                     b.Property<string>("email")
@@ -123,30 +126,28 @@ namespace WebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VilleCodePostal");
+                    b.HasIndex("VilleId");
 
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("WebAPI.Models.Ville", b =>
                 {
+                    b.Property<int>("VilleId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CodePostal")
-                        .HasColumnType("int")
-                        .HasMaxLength(5);
+                        .HasColumnType("int");
 
                     b.Property<string>("IdDepartment")
                         .HasColumnType("nvarchar(3)")
                         .HasMaxLength(3);
 
-                    b.Property<string>("IdVille")
-                        .HasColumnType("nvarchar(5)")
-                        .HasMaxLength(5);
-
                     b.Property<string>("NomVille")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.HasKey("CodePostal");
+                    b.HasKey("VilleId");
 
                     b.ToTable("Villes");
                 });
@@ -162,9 +163,9 @@ namespace WebAPI.Migrations
 
             modelBuilder.Entity("WebAPI.Models.User", b =>
                 {
-                    b.HasOne("WebAPI.Models.Ville", "Ville")
+                    b.HasOne("WebAPI.Models.Ville", null)
                         .WithMany("ListofUsers")
-                        .HasForeignKey("VilleCodePostal");
+                        .HasForeignKey("VilleId");
                 });
 #pragma warning restore 612, 618
         }

@@ -29,20 +29,29 @@ namespace WebAPI.Controllers
         [HttpGet]
         public async  Task<IActionResult> ListUsers()
         {
-            var list_users= await(from user in _db.Users
 
-                                       select user).ToListAsync();
+            var list_users = await (from user in _db.Users 
+
+                                    select user).ToListAsync();
 
             return Ok(list_users);
 
 
-        }
 
+
+            
+        }
+        
         // GET api/<VilleController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet]
+        public async Task<IActionResult> ListUsersWithValidVilleId()
         {
-            return "value";
+            var list_users = await (_db.Users.FromSqlRaw("Select * from dbo.Villes ").ToListAsync());
+                                                                  
+
+
+
+                return Ok(list_users);
         }
 
         // POST api/User/AddUser
@@ -51,17 +60,18 @@ namespace WebAPI.Controllers
         {
             var user = new User
             {
-              Name = _user.Name,
-              LastName = _user.LastName,
-              email = _user.email,
-              Phone = _user.Phone,
-              Adresse = _user.Adresse,
-              Gender = _user.Gender,
-              CodePostalUser = _user.CodePostalUser
-             
+                Name = _user.Name,
+                LastName = _user.LastName,
+                email = _user.email,
+                Phone = _user.Phone,
+                Adresse = _user.Adresse,
+                Gender = _user.Gender,
+                CodePostalUser = _user.CodePostalUser,
+                Password = _user.Password,
+                
 
-             
 
+        
             };
             uow.UserRepository.AddUser(user);
             await uow.SaveAsync();
