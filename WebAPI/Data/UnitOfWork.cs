@@ -23,8 +23,7 @@ namespace WebAPI.Data.Repo
 
         public IUserRepository UserRepository =>
             new UserRepository(dc);
-        public IVilleRepository VilleRepository =>
-            new VilleRepository(dc);
+      
 
         public async Task<bool> SaveAsync()
         {

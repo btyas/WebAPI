@@ -14,7 +14,7 @@ namespace WebAPI.Interfaces
 
         IUserRepository UserRepository { get; }
 
-        IVilleRepository VilleRepository { get; }
+        
         Task<bool> SaveAsync();
         
     }

@@ -37,6 +37,8 @@ namespace WebAPI.Models
 
         public int CityId{ get; set; }
 
+        public ICollection<CategoriesPlats> categoriesPlats { get; set; }
+
     }
 
    

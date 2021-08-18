@@ -15,7 +15,7 @@ namespace WebAPI.Data
 
             public DbSet<Cuisinier> Cuisiniers { get; set; }
 
-            public DbSet<Ville>  Villes { get; set; }
+            public DbSet<CategoriesPlats>  categoriesPlats { get; set; }
 
             public DbSet<User>  Users { get; set; }
     }

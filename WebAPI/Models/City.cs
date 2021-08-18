@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,7 +16,12 @@ namespace WebAPI.Models
 
         public List<Cuisinier> ListofCuisiniers { get; set; }
 
-        public int CityId { get; set; }
+        [ForeignKey("City-Cuisinier-FK")]
+        public int CuisinierID { get; set; }
 
+        public ICollection<User> ListOFUsers { get; set; }
+
+        [ForeignKey("City-Users-FK")]
+        public int UserId { get; set; }
     }
 }
