@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebAPI.Data;
+using WebAPI.Dtos;
 using WebAPI.Interfaces;
 using WebAPI.Models;
 
@@ -53,6 +54,32 @@ namespace WebAPI.Controllers
 
                 return Ok(list_users);
         }
+
+       
+         [HttpPost]
+
+         public async Task<IActionResult> LoginUser(UserDto _user)
+        { 
+            var list_users = await(from user in _db.Users
+
+                                   select user).ToListAsync();
+
+            foreach (User user in list_users)
+            {
+                if (user.email == _user.email)
+                {
+                    if (user.Password == _user.Password)
+                    {
+                        return Ok();
+                    }
+                    
+                }
+            }
+
+            return NotFound();
+        }
+
+
 
         // POST api/User/AddUser
         [HttpPost]

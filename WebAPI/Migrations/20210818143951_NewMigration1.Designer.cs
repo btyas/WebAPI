@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAPI.Data;
 
 namespace WebAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210818143951_NewMigration1")]
+    partial class NewMigration1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -111,67 +113,6 @@ namespace WebAPI.Migrations
                     b.ToTable("Cuisiniers");
                 });
 
-            modelBuilder.Entity("WebAPI.Models.ImagePlat", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ImageplatName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PlatId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PlatId")
-                        .IsUnique();
-
-                    b.ToTable("imagePlats");
-                });
-
-            modelBuilder.Entity("WebAPI.Models.ListeDesPlats", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("NombrePlats")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("listeDesPlats");
-                });
-
-            modelBuilder.Entity("WebAPI.Models.Plat", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CategoriesPlatsId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ListeDesPlatsId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoriesPlatsId");
-
-                    b.HasIndex("ListeDesPlatsId");
-
-                    b.ToTable("plats");
-                });
-
             modelBuilder.Entity("WebAPI.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -228,26 +169,6 @@ namespace WebAPI.Migrations
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("WebAPI.Models.ImagePlat", b =>
-                {
-                    b.HasOne("WebAPI.Models.Plat", "plat")
-                        .WithOne("Imageplat")
-                        .HasForeignKey("WebAPI.Models.ImagePlat", "PlatId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("WebAPI.Models.Plat", b =>
-                {
-                    b.HasOne("WebAPI.Models.CategoriesPlats", null)
-                        .WithMany("plats")
-                        .HasForeignKey("CategoriesPlatsId");
-
-                    b.HasOne("WebAPI.Models.ListeDesPlats", null)
-                        .WithMany("plats")
-                        .HasForeignKey("ListeDesPlatsId");
                 });
 
             modelBuilder.Entity("WebAPI.Models.User", b =>

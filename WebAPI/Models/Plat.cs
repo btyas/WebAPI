@@ -10,9 +10,9 @@ namespace WebAPI.Models
 
         public int Id { get; set; }
 
-        public int ImageId { get; set; }
+        public string  Name { get; set; }
 
 
-        public ImagePlat imagePlat { get; set; }
+        public  ImagePlat Imageplat { get; set; }
     }
 }

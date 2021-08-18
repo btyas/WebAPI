@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAPI.Data;
 
 namespace WebAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210818150054_NewMigration2")]
+    partial class NewMigration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,9 +156,6 @@ namespace WebAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoriesPlatsId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("ListeDesPlatsId")
                         .HasColumnType("int");
 
@@ -164,8 +163,6 @@ namespace WebAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoriesPlatsId");
 
                     b.HasIndex("ListeDesPlatsId");
 
@@ -241,10 +238,6 @@ namespace WebAPI.Migrations
 
             modelBuilder.Entity("WebAPI.Models.Plat", b =>
                 {
-                    b.HasOne("WebAPI.Models.CategoriesPlats", null)
-                        .WithMany("plats")
-                        .HasForeignKey("CategoriesPlatsId");
-
                     b.HasOne("WebAPI.Models.ListeDesPlats", null)
                         .WithMany("plats")
                         .HasForeignKey("ListeDesPlatsId");
