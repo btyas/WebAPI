@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAPI.Data;
 
 namespace WebAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210818085744_RemoveVille")]
+    partial class RemoveVille
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,23 +31,25 @@ namespace WebAPI.Migrations
                     b.Property<string>("Country")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("CuisinierId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("cuisinierId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("cuisinierId");
+                    b.HasIndex("CuisinierId");
 
                     b.ToTable("categoriesPlats");
                 });
 
             modelBuilder.Entity("WebAPI.Models.City", b =>
                 {
-                    b.Property<int>("CodePostale")
-                        .HasColumnType("int");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Country")
                         .HasColumnType("nvarchar(max)");
@@ -59,7 +63,7 @@ namespace WebAPI.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("CodePostale");
+                    b.HasKey("Id");
 
                     b.ToTable("Cities");
                 });
@@ -121,7 +125,7 @@ namespace WebAPI.Migrations
                     b.Property<string>("Adresse")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CityCodePostale")
+                    b.Property<int?>("CityId")
                         .HasColumnType("int");
 
                     b.Property<int>("CodePostalUser")
@@ -148,16 +152,16 @@ namespace WebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CityCodePostale");
+                    b.HasIndex("CityId");
 
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("WebAPI.Models.CategoriesPlats", b =>
                 {
-                    b.HasOne("WebAPI.Models.Cuisinier", "cuisinier")
+                    b.HasOne("WebAPI.Models.Cuisinier", null)
                         .WithMany("categoriesPlats")
-                        .HasForeignKey("cuisinierId");
+                        .HasForeignKey("CuisinierId");
                 });
 
             modelBuilder.Entity("WebAPI.Models.Cuisinier", b =>
@@ -173,7 +177,7 @@ namespace WebAPI.Migrations
                 {
                     b.HasOne("WebAPI.Models.City", null)
                         .WithMany("ListOFUsers")
-                        .HasForeignKey("CityCodePostale");
+                        .HasForeignKey("CityId");
                 });
 #pragma warning restore 612, 618
         }

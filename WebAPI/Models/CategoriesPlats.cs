@@ -14,7 +14,7 @@ namespace WebAPI.Models
 
         public string Country { get; set; }
 
-       
-        
+
+        public Cuisinier cuisinier { get; set; }
     }
 }

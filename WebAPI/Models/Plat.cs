@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace WebAPI.Models
 {
-    public class ImageUrl
+    public class Plat
     {
+
         public int Id { get; set; }
 
-        [MaxLength(50)]
-        public string ImagePaths { get; set; }
+        public int ImageId { get; set; }
 
-        
+
+        public ImagePlat imagePlat { get; set; }
     }
 }
