@@ -15,12 +15,7 @@ namespace WebAPI.Data.Repo
             this.dc = dc;
         }
         
-        public ICityRepository CityRepository => 
-            new CityRepository(dc);
-
-        public ICuisinerRepository CuisinierRepository => 
-             new CuisinierRepository(dc);
-
+        
         public IUserRepository UserRepository =>
             new UserRepository(dc);
       

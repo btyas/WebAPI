@@ -8,10 +8,7 @@ namespace WebAPI.Interfaces
 {
    public  interface IUnitofwork
     {
-        ICityRepository CityRepository { get; }
-
-        ICuisinerRepository CuisinierRepository { get; }
-
+        
         IUserRepository UserRepository { get; }
 
         
