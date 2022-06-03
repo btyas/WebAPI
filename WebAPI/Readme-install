@@ -3,3 +3,14 @@ Clone Repos
 insall sdk core 3.1 X86 or X64
 insall C# extension
 Change brach project
+--global user.email "terdayetyassine@gmail.com"
+git config --global user.name Yassine
+
+
+dotnet tool install --global dotnet-ef
+dotnet add package Microsoft.EntityFrameworkCore.Design
+
+
+dotnet ef  :   to verify entity framework is installed properly
+
+build failed NuGet.targets(282,5): error MSB3202:   look to WebAPI.sln Path
