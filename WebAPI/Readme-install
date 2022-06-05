@@ -20,4 +20,7 @@ dotnet build
 
 dotnet ef database update InitialCreate
 
-change connection string : Server=DESKTOP-M0R30ER\\SQLEXPRESS
+
+Install ssqServer Management studio 2014 pour (32 bit)
+
+change connection string : Server=DESKTOP-M0R30ER\\SQLEXPRESS   (server name)
