@@ -12,6 +12,10 @@ public  class Street
 {
   public int Id { get; set; }
 
+  public string StreetName { get; set; }
+
+  public int AdressPostal { get; set; }
+  
   public IList<StaionPos> stations { get; set; }
 
   public City City { get; set; }

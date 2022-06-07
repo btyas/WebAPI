@@ -13,10 +13,18 @@ namespace WebAPI.Models {
 
         public string NameCity  { get; set; }
 
+        public string StreetName { get; set; }
+
         
         public string AdressPostal { get; set; }
+
+        public float PosLatitude { get; set; }
+
+        public float PosLongitude { get; set; }
         
         public  Street street  { get; set; }
+
+
 
     }
 
