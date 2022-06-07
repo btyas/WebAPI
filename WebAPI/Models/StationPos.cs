@@ -21,6 +21,8 @@ namespace WebAPI.Models {
         public float PosLatitude { get; set; }
 
         public float PosLongitude { get; set; }
+
+        public bool Status { get; set; }
         
         public  Street street  { get; set; }
 
