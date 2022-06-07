@@ -17,17 +17,17 @@ namespace WebAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUnitofwork uow;
+        private readonly IUnitofwork _uow;
         private readonly DataContext _db;
 
 
-        public UserController(IUnitofwork uow, DataContext _db)
+        public UserController(IUnitofwork uow, DataContext db)
         {
-            this.uow = uow;
-            this._db = _db;
+            this._uow = uow;
+            this._db = db;
         }
         // GET: api/User/ListUsers
-        [HttpGet]
+       
         public async  Task<IActionResult> ListUsers()
         {
 
@@ -100,8 +100,8 @@ namespace WebAPI.Controllers
 
         
             };
-            uow.UserRepository.AddUser(user);
-            await uow.SaveAsync();
+            _uow.UserRepository.AddUser(user);
+            await _uow.SaveAsync();
            
             return StatusCode(201);
         }

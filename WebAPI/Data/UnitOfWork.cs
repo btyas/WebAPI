@@ -19,6 +19,9 @@ namespace WebAPI.Data.Repo
         public IUserRepository UserRepository =>
             new UserRepository(dc);
       
+          
+        public IStationInterface StationRepository =>
+            new StationRepository(dc);
 
         public async Task<bool> SaveAsync()
         {

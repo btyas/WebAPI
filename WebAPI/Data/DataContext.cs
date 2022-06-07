@@ -15,7 +15,7 @@ namespace WebAPI.Data
 
             public DbSet<User>  Users { get; set; }
             public DbSet<City> Cities {get; set;}
-            public DbSet<StaionPos> Stations {get; set;}
+            public DbSet<StationPos> Stations {get; set;}
             public DbSet<Street> Streets {get; set;}
     }
 }

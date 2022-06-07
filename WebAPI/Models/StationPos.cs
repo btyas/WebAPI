@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Models {
     
-    public class StaionPos
+    public class StationPos
     {
         public int Id { get; set; }
 

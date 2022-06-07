@@ -10,7 +10,8 @@ namespace WebAPI.Interfaces
     {
         
         IUserRepository UserRepository { get; }
-
+        
+        IStationInterface  StationRepository { get;}
         
         Task<bool> SaveAsync();
         
