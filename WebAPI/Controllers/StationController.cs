@@ -25,8 +25,8 @@ public class StationController : ControllerBase {
               this._db =  db;
 
          }
-        
-         [HttpGet]
+        s
+         [HttpGet]  // http://localhost:5000/api/Station/ListAvailibleStation
         public async Task<IActionResult> ListAvailibleStations()
         {
             var list_stations = await (_db.Stations.FromSqlRaw("Select * from dbo.Stations ").ToListAsync());
@@ -36,4 +36,14 @@ public class StationController : ControllerBase {
 
                 return Ok(list_stations);
         }
+
+        [HttpPost]    // http://localhost:5000/api/Station/SaveStation
+       public async Task<IActionResult>  SaveStation(StationPos station)
+       {
+
+             _uow.StationRepository.AddStation(station);
+             await _uow.SaveAsync();
+             return  StatusCode(201);
+       }
+
 }
