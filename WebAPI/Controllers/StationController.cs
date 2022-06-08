@@ -25,7 +25,7 @@ public class StationController : ControllerBase {
               this._db =  db;
 
          }
-        s
+        
          [HttpGet]  // http://localhost:5000/api/Station/ListAvailibleStation
         public async Task<IActionResult> ListAvailibleStations()
         {
