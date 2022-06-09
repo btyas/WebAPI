@@ -38,9 +38,18 @@ public class StationController : ControllerBase {
         }
 
         [HttpPost]    // http://localhost:5000/api/Station/SaveStation
-       public async Task<IActionResult>  SaveStation(StationPos station)
+       public async Task<IActionResult>  SaveStation(StationPos _station)
        {
+                 var station = new StationPos
+            {
+                
+                NameCity = _station.NameCity,
+                StreetName = _station.StreetName,
+                Status = _station.Status
 
+
+        
+            };
              _uow.StationRepository.AddStation(station);
              await _uow.SaveAsync();
              return  StatusCode(201);
