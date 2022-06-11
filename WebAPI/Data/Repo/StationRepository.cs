@@ -21,7 +21,7 @@ namespace WebAPI.Data.Repo
             _dc.Stations.Add(station);
         }
 
-        public void DeleteStation(int StationPosId)
+        public void Delete(int StationPosId)
         {
             var station = _dc.Stations.Find(StationPosId);
             _dc.Stations.Remove(station);

@@ -55,4 +55,23 @@ public class StationController : ControllerBase {
              return  StatusCode(201);
        }
 
+
+         [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
+        {
+        }
+
+        // http://localhost:5000/api/Station/DeleteStation
+        [HttpDelete]
+         public async Task<IActionResult> DeleteStation()
+        {
+
+          var emptyStation_data =  _db.Stations
+                                        .FromSqlRaw("select 1 from dbo.Stations where streetId IS NULL").FirstOrDefault();
+                                          
+       
+            _uow.StationRepository.Delete(emptyStation_data.Id);
+            return  StatusCode(201);
+        }
+
 }

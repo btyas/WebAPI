@@ -13,7 +13,7 @@ namespace WebAPI.Interfaces
 
         void AddStation(StationPos station);
 
-        void DeleteStation(int StationPosId);
+        void Delete(int StationPosId);
 
         Task<StationPos> FindStation(int id);
     }
