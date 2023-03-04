@@ -11,10 +11,16 @@ namespace WebAPI.Data
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         { }
+
+            protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+             {
+        optionsBuilder.UseOracle("connection_string");
+              }
+
             public DbSet<City> Cities { get; set; }
 
         
-
+ 
         
 
 
@@ -22,6 +28,9 @@ namespace WebAPI.Data
 
             public DbSet<User>  Users { get; set; }
     }
+
+
+
 }
     
 
