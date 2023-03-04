@@ -17,10 +17,8 @@ namespace WebAPI.Models
          [Key]
          [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CodePostale { get; set; }
-        public List<Cuisinier> ListofCuisiniers { get; set; }
+     
 
-        [ForeignKey("City-Cuisinier-FK")]
-        public int CuisinierID { get; set; }
 
         public ICollection<User> ListOFUsers { get; set; }
 

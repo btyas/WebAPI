@@ -13,16 +13,12 @@ namespace WebAPI.Data
         { }
             public DbSet<City> Cities { get; set; }
 
-            public DbSet<Cuisinier> Cuisiniers { get; set; }
+        
 
-            public DbSet<CategoriesPlats>  categoriesPlats { get; set; }
+        
 
 
-            public DbSet<Plat>  plats { get; set; }
 
-             public DbSet<ListeDesPlats> listeDesPlats  { get; set; }
-
-            public DbSet<ImagePlat> imagePlats { get; set; }
 
             public DbSet<User>  Users { get; set; }
     }

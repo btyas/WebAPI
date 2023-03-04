@@ -10,8 +10,7 @@ namespace WebAPI.Interfaces
     {
         ICityRepository CityRepository { get; }
 
-        ICuisinerRepository CuisinierRepository { get; }
-
+       
         IUserRepository UserRepository { get; }
 
         
